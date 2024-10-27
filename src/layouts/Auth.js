@@ -41,18 +41,18 @@ const Auth = (props) => {
 
   return (
     <>
-      <div className="main-content" ref={mainContent}>
-        <div className="header bg-gradient-info py-3 py-lg-5">
+      <div className="main-content auth-main" ref={mainContent}>
+        <div className="header  py-3 py-lg-5">
           <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
-                  <h1 className="text-white">Welcome!</h1>
+                  <h1 className="text-white mb-2">Welcome!</h1>
                 </Col>
               </Row>
             </div>
           </Container>
-          <div className="separator separator-bottom separator-skew zindex-100">
+          {/* <div className="separator separator-bottom separator-skew zindex-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               preserveAspectRatio="none"
@@ -66,10 +66,10 @@ const Auth = (props) => {
                 points="2560 0 2560 100 0 100"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
         {/* Page content */}
-        <Container className="mt--8 pb-5">
+        <Container className="mt--6 pb-5">
           <Row className="justify-content-center">
             <Switch>
               {getRoutes(routes)}
