@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Button,
   Card,
@@ -9,9 +11,34 @@ import {
   InputGroupText,
   InputGroup,
   Col,
+  Spinner,
 } from "reactstrap";
+import { signIn } from "store/actions/authActions";
 
 const Login = () => {
+  let dispatch = useDispatch();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const [btnLoader, setBtnLoader] = useState(false);
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setBtnLoader(true);
+    dispatch(
+      signIn(userData, () => {
+        setBtnLoader(false);
+      })
+    );
+  };
   return (
     <>
       <Col lg="5" md="7">
@@ -20,7 +47,7 @@ const Login = () => {
             <div className="text-center text-muted mb-4">
               <small>Sign in</small>
             </div>
-            <Form role="form">
+            <Form role="form" onSubmit={handleSubmit}>
               <FormGroup className="mb-3">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -32,6 +59,10 @@ const Login = () => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
+                    required
+                    name="email"
+                    value={userData.email}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
@@ -46,13 +77,22 @@ const Login = () => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
+                    required
+                    name="password"
+                    value={userData.password}
+                    onChange={handleChange}
                   />
                 </InputGroup>
               </FormGroup>
 
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
-                  Sign in
+                <Button
+                  className="my-4"
+                  color="primary"
+                  type="submit"
+                  disabled={btnLoader}
+                >
+                  {btnLoader ? <Spinner size="sm" /> : "Sign in"}
                 </Button>
               </div>
             </Form>

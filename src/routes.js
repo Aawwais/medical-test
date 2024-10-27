@@ -52,13 +52,13 @@ var routes = [
     layout: "/auth",
     isMenu: false,
   },
-  // {
-  //   path: "/register",
-  //   name: "Register",
-  //   icon: "ni ni-circle-08 text-pink",
-  //   component: Register,
-  //   layout: "/auth",
-  //   isMenu: false,
-  // },
+  {
+    path: "/register",
+    name: "Register",
+    icon: "ni ni-circle-08 text-pink",
+    component: Register,
+    layout: "/auth",
+    isMenu: false,
+  },
 ];
 export default routes;

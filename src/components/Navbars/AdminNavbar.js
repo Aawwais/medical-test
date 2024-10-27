@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   DropdownMenu,
@@ -8,9 +9,12 @@ import {
   Nav,
   Container,
   Media,
+  Button,
 } from "reactstrap";
+import { logout } from "store/actions/authActions";
 
 const AdminNavbar = (props) => {
+  let dispatch = useDispatch();
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -23,7 +27,8 @@ const AdminNavbar = (props) => {
           </Link>
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
-              <DropdownToggle className="pr-0" nav>
+              <Button onClick={() => dispatch(logout())}>Logout</Button>
+              {/* <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
                   <span className="avatar avatar-sm rounded-circle">
                     <img
@@ -42,7 +47,7 @@ const AdminNavbar = (props) => {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                {/* <DropdownItem className="noti-title" header tag="div">
+                <DropdownItem className="noti-title" header tag="div">
                   <h6 className="text-overflow m-0">Welcome!</h6>
                 </DropdownItem>
                 <DropdownItem to="/admin/user-profile" tag={Link}>
@@ -61,12 +66,12 @@ const AdminNavbar = (props) => {
                   <i className="ni ni-support-16" />
                   <span>Support</span>
                 </DropdownItem>
-                <DropdownItem divider /> */}
-                <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                <DropdownItem divider />
+                <DropdownItem href="#pablo" onClick={() => dispatch(logout())}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
-              </DropdownMenu>
+              </DropdownMenu> */}
             </UncontrolledDropdown>
           </Nav>
         </Container>
